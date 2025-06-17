@@ -43,7 +43,7 @@ async def call_mcp_tool(user_input: str, selected_tool: str = None) -> tuple[str
     tool = selected_tool or get_tool_from_ai(user_input)
     print(f"Tool selected: {tool}")
 
-    async with sse_client(url="http://localhost:8000/sse") as streams:
+    async with sse_client(url="https://mcp-server-tha4.onrender.com/sse") as streams:
         async with ClientSession(*streams) as session:
             await session.initialize()
 
