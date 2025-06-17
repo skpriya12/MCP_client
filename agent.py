@@ -80,7 +80,7 @@ def launch_gradio():
         ask_button.click(fn=ask, inputs=input_box, outputs=output_box)
 
     # ✅ Use PORT and host 0.0.0.0 for Render
-    port = int(os.environ.get("PORT", 8000))
+    port = int(os.environ.get("PORT", 10000))
     demo.launch(server_name="0.0.0.0", server_port=port)
 
 
