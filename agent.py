@@ -43,7 +43,7 @@ async def call_mcp_tool(user_input: str, selected_tool: str = None) -> tuple[str
     tool = selected_tool or get_tool_from_ai(user_input)
     print(f"Tool selected: {tool}")
 
-    async with sse_client(url="https://mcp-server-tha4.onrender.com/sse") as streams:
+    async with sse_client(url="http://localhost:8000/sse") as streams:
         async with ClientSession(*streams) as session:
             await session.initialize()
 
@@ -79,7 +79,9 @@ def launch_gradio():
 
         ask_button.click(fn=ask, inputs=input_box, outputs=output_box)
 
-    demo.launch()
+    # ✅ Use PORT and host 0.0.0.0 for Render
+    port = int(os.environ.get("PORT", 8000))
+    demo.launch(server_name="0.0.0.0", server_port=port)
 
 
 if __name__ == "__main__":
